@@ -54,11 +54,11 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
-#define KC_GUIL  G(KC_LEFT)
-#define KC_GUIR  G(KC_RIGHT)
 #define KC_MMUTE KC__MUTE
 #define KC_MVOLD KC__VOLDOWN
 #define KC_MVOLU KC__VOLUP
+#define KC_RSSPC LT(_RAISE, KC_SPC)
+#define KC_LWENT LT(_LOWER, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -69,19 +69,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
+                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
   [_LOWER] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,   DEL,\
+        ESC,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  HOME,    UP,   END,  TILD,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,  UNDS,  PLUS,  LCBR,  RCBR,  PIPE,                   LEFT,  DOWN,    UP, RIGHT,  PGUP, XXXXX,\
+      CTLTB,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,   GRV, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  MINS,   EQL,  LBRC,  RBRC,  BSLS,                   TILD,   GRV,  HOME,   END,  PGDN, XXXXX,\
+       LSFT,  PERC,  CIRC,  LBRC,  RBRC,  AMPR,                   ASTR, XXXXX, XXXXX, XXXXX,  BSLS, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
+                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,   F11,   F12, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
+                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
+                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   )
 };
