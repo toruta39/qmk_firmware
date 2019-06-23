@@ -57,8 +57,6 @@ enum macro_keycodes {
 #define KC_MMUTE KC__MUTE
 #define KC_MVOLD KC__VOLDOWN
 #define KC_MVOLU KC__VOLUP
-#define KC_RSSPC LT(_RAISE, KC_SPC)
-#define KC_LWENT LT(_LOWER, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -69,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
+                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -81,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,  PERC,  CIRC,  LBRC,  RBRC,  AMPR,                   ASTR, XXXXX, XXXXX, XXXXX,  BSLS, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
+                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
@@ -93,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,   F11,   F12, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   LGUI, LOWER, RSSPC,    LWENT, RAISE,  RALT \
+                                   LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
                               //`--------------------'  `--------------------'
   ),
 
