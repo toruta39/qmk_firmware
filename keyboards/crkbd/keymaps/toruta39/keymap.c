@@ -54,6 +54,8 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
+#define KC_GUIL  LGUI(KC_LEFT)
+#define KC_GUIR  LGUI(KC_RIGHT)
 #define KC_MMUTE KC__MUTE
 #define KC_MVOLD KC__VOLDOWN
 #define KC_MVOLU KC__VOLUP
@@ -85,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  HOME,    UP,   END,  TILD,   DEL,\
+        ESC,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  GUIL,    UP,  GUIR,  TILD,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       CTLTB,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,   GRV, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
