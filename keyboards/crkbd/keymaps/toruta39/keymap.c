@@ -54,11 +54,12 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
-#define KC_GUIL  LGUI(KC_LEFT)
-#define KC_GUIR  LGUI(KC_RIGHT)
 #define KC_MMUTE KC__MUTE
 #define KC_MVOLD KC__VOLDOWN
 #define KC_MVOLU KC__VOLUP
+#define KC_MAC   AG_SWAP
+#define KC_WIN   AG_NORM
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -82,12 +83,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,   F11,   F12, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                    LALT, LOWER,   SPC,      ENT, RAISE,  RALT \
-                              //`--------------------'  `--------------------'
+                              //`--------------------'  `------------------ --'
   ),
 
   [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  GUIL,    UP,  GUIR,  TILD,   DEL,\
+        ESC,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  HOME,    UP,   END,  TILD,   DEL,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       CTLTB,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,   GRV, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -99,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,  MRWD,  MPLY,  MFFD, XXXXX, XXXXX,\
+        RST,  LRST,   MAC,   WIN, XXXXX, XXXXX,                  XXXXX,  MRWD,  MPLY,  MFFD, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
   //   LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX,  MUTE,  VOLD,  VOLU, XXXXX, XXXXX,
        LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, MMUTE, MVOLD, MVOLU, XXXXX, XXXXX,\
