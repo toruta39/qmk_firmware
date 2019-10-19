@@ -35,6 +35,8 @@ enum custom_keycodes {
     ADJUST,
     BACKLIT,
     RGBRST,
+    MP_HOME,
+    MP_END,
     MP_PREV,
     MP_NEXT,
     MP_VOLDOWN,
@@ -63,6 +65,8 @@ enum macro_keycodes {
 #define KC_CTLTB CTL_T(KC_TAB)
 #define KC_MAC   MAGIC_UNSWAP_ALT_GUI
 #define KC_WIN   MAGIC_SWAP_ALT_GUI
+#define KC_MMHOM MP_HOME
+#define KC_MMEND MP_END
 #define KC_MMPRV MP_PREV
 #define KC_MMNXT MP_NEXT
 #define KC_MMVOD MP_VOLDOWN
@@ -125,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-         TILD,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  HOME,    UP,   END,  PGUP,   DEL,\
+         TILD,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS, MMHOM,    UP, MMEND,  PGUP,   DEL,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         _____,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,  PGDN,  DQUO,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -224,9 +228,18 @@ void iota_gfx_task_user(void) {
 #endif//SSD1306OLED
 
 bool process_mp_key(uint16_t keycode, keyrecord_t *record, bool is_windows) {
+    uint16_t final_modifier_keycode = 0;
     uint16_t final_keycode = 0;
 
     switch (keycode) {
+        case MP_HOME:
+            final_modifier_keycode = is_windows ? 0 : KC_LGUI;
+            final_keycode = is_windows ? KC_HOME : KC_LEFT;
+            break;
+        case MP_END:
+            final_modifier_keycode = is_windows ? 0 : KC_LGUI;
+            final_keycode = is_windows ? KC_END : KC_RGHT;
+            break;
         case MP_PREV:
             final_keycode = is_windows ? KC_MPRV : KC_MRWD;
             break;
@@ -247,9 +260,11 @@ bool process_mp_key(uint16_t keycode, keyrecord_t *record, bool is_windows) {
     if (!final_keycode) return false;
 
     if (record->event.pressed) {
+        if (final_modifier_keycode) register_code(final_modifier_keycode);
         register_code(final_keycode);
     } else {
         unregister_code(final_keycode);
+        if (final_modifier_keycode) unregister_code(final_modifier_keycode);
     }
 
     return false;
@@ -312,6 +327,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             #endif
             break;
+        case MP_HOME:
+        case MP_END:
         case MP_PREV:
         case MP_NEXT:
         case MP_MUTE:
