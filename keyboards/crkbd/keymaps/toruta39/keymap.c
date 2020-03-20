@@ -24,9 +24,10 @@ extern uint8_t is_master;
 #define _QWERTY 0
 #define _DVORAK 1
 #define _COLEMAK 2
-#define _LOWER 3
-#define _RAISE 4
-#define _ADJUST 5
+#define _GAME 3
+#define _LOWER 4
+#define _RAISE 5
+#define _ADJUST 6
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
@@ -75,6 +76,7 @@ enum macro_keycodes {
 #define KC_DFQWE DF(_QWERTY)
 #define KC_DFDVR DF(_DVORAK)
 #define KC_DFCLM DF(_COLEMAK)
+#define KC_TGGME TG(_GAME)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -157,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
          LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, MMMUT, MMVOD, MMVOU, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DFQWE, DFDVR, DFCLM, XXXXX, XXXXX,\
+         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DFQWE, DFDVR, DFCLM, TGGME, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
