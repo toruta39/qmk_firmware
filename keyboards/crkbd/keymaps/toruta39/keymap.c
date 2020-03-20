@@ -22,12 +22,11 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _DVORAK 1
-#define _COLEMAK 2
-#define _GAME 3
-#define _LOWER 4
-#define _RAISE 5
-#define _ADJUST 6
+#define _COLEMAK 1
+#define _GAME 2
+#define _LOWER 3
+#define _RAISE 4
+#define _ADJUST 5
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
@@ -74,7 +73,6 @@ enum macro_keycodes {
 #define KC_MMVOU MP_VOLUP
 #define KC_MMMUT MP_MUTE
 #define KC_DFQWE DF(_QWERTY)
-#define KC_DFDVR DF(_DVORAK)
 #define KC_DFCLM DF(_COLEMAK)
 #define KC_TGGME TG(_GAME)
 
@@ -92,19 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 //`--------------------'  `--------------------'
     ),
 
-    [_DVORAK] = LAYOUT_kc( \
-    //,-----------------------------------------.                ,-----------------------------------------.
-        _____,  SCLN,  COMM,   DOT,     P,     Y,                      F,     G,     C,     R,     L, _____,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,     A,     O,     E,     U,     I,                      D,     H,     T,     N,     S,  SLSH,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,  QUOT,     Q,     J,     K,     X,                      B,     M,     W,     V,     Z, _____,\
-    //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                    _____, _____, _____,    _____, _____, _____ \
-                                //`--------------------'  `--------------------'
-    ),
-
-
     [_COLEMAK] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
         _____,     Q,     W,     F,     P,     G,                      J,     L,     U,     Y,  SCLN, _____,\
@@ -119,11 +104,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_GAME] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-          TAB,     Q,     W,     E,     R,     T,                      Y,     U,    UP,     O,     P, _____,\
+          TAB, _____, _____, _____, _____, _____,                  _____, _____,    UP, _____, _____, _____,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-         LCTL,     A,     S,     D,     F,     G,                      H,  LEFT,  DOWN, RIGHT,  SCLN, _____,\
+         LCTL, _____, _____, _____, _____, _____,                  _____,  LEFT,  DOWN, RIGHT, _____, _____,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH, _____,\
+        _____, _____, _____, _____, _____, _____,                  _____, _____, _____, _____, _____, _____,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
@@ -159,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
          LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, MMMUT, MMVOD, MMVOU, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DFQWE, DFDVR, DFCLM, TGGME, XXXXX,\
+         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DFQWE, DFCLM, TGGME, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
