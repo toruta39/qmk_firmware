@@ -128,11 +128,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-         TILD,  EXLM,    AT,  LBRC,  RBRC,  UNDS,                   PLUS, MMHOM,    UP, MMEND,  TILD,   DEL,\
+         TILD,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS, MMHOM,    UP, MMEND,  TILD,   DEL,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         _____,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,  PIPE,   GRV,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,  PERC,  CIRC,  LCBR,  RCBR,  AMPR,                   ASTR,   INS,  HOME,   END,  BSLS, _____,\
+        _____,  PERC,  CIRC,  LBRC,  RBRC,  AMPR,                   ASTR,   INS,  HOME,   END,  BSLS, _____,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
