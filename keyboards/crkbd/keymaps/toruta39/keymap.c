@@ -21,12 +21,11 @@ extern uint8_t is_master;
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define _QWERTY 0
-#define _COLEMAK 1
-#define _GAME 2
-#define _LOWER 3
-#define _RAISE 4
-#define _ADJUST 5
+#define _DEFAULT 0
+#define _GAME 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
@@ -35,13 +34,11 @@ enum custom_keycodes {
     ADJUST,
     BACKLIT,
     RGBRST,
-    MP_HOME,
-    MP_END,
     MP_PREV,
     MP_NEXT,
     MP_VOLDOWN,
     MP_VOLUP,
-    MP_MUTE
+    MP_MUTE,
 };
 
 enum macro_keycodes {
@@ -63,22 +60,18 @@ enum macro_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
-#define KC_MAC   MAGIC_UNSWAP_ALT_GUI
-#define KC_WIN   MAGIC_SWAP_ALT_GUI
-#define KC_MMHOM MP_HOME
-#define KC_MMEND MP_END
 #define KC_MMPRV MP_PREV
 #define KC_MMNXT MP_NEXT
 #define KC_MMVOD MP_VOLDOWN
 #define KC_MMVOU MP_VOLUP
 #define KC_MMMUT MP_MUTE
-#define KC_DFQWE DF(_QWERTY)
-#define KC_DFCLM DF(_COLEMAK)
-#define KC_TGGME TG(_GAME)
+#define KC_MAC   LAG_NRM
+#define KC_WIN   LAG_SWP
+#define KC_GAME  TG(_GAME)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT_kc( \
+    [_DEFAULT] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
           ESC,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSPC,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -86,19 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
          LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                     LGUI, LOWER,   SPC,      ENT, RAISE,  RALT \
-                                //`--------------------'  `--------------------'
-    ),
-
-    [_COLEMAK] = LAYOUT_kc( \
-    //,-----------------------------------------.                ,-----------------------------------------.
-        _____,     Q,     W,     F,     P,     G,                      J,     L,     U,     Y,  SCLN, _____,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,     A,     R,     S,     T,     D,                      H,     N,     E,     I,     O,  QUOT,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,     Z,     X,     C,     V,     B,                      K,     M,  COMM,   DOT,  SLSH, _____,\
-    //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                    _____, _____, _____,    _____, _____, _____ \
+                                     LGUI, LOWER,   SPC,      ENT, RAISE,  LALT \
                                 //`--------------------'  `--------------------'
     ),
 
@@ -128,11 +109,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAISE] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-         TILD,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS, MMHOM,    UP, MMEND,  TILD,   DEL,\
+         TILD,  EXLM,    AT,  LCBR,  RCBR,  UNDS,                   PLUS,  HOME,    UP,   END,  TILD,   DEL,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         _____,  HASH,   DLR,  LPRN,  RPRN,  MINS,                    EQL,  LEFT,  DOWN, RIGHT,  PIPE,   GRV,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,  PERC,  CIRC,  LBRC,  RBRC,  AMPR,                   ASTR,   INS,  HOME,   END,  BSLS, _____,\
+        _____,  PERC,  CIRC,  LBRC,  RBRC,  AMPR,                   ASTR,  PGUP,   INS,  PGDN,  BSLS, _____,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
@@ -140,11 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJUST] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-          RST,  LRST,   MAC,   WIN, XXXXX, XXXXX,                  XXXXX, MMPRV,  MPLY, MMNXT, XXXXX, XXXXX,\
+          RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, MMPRV,  MPLY, MMNXT, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
          LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, MMMUT, MMVOD, MMVOU, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, DFQWE, DFCLM, TGGME, XXXXX, XXXXX,\
+         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX,   MAC,   WIN,  GAME, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
@@ -152,11 +133,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 int RGB_current_mode;
-
-void persistent_default_layer_set(uint16_t default_layer) {
-    eeconfig_update_default_layer(default_layer);
-    default_layer_set(default_layer);
-}
 
 // Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
@@ -199,10 +175,10 @@ void matrix_scan_user(void) {
 void matrix_render_user(struct CharacterMatrix *matrix) {
     if (is_master) {
         // If you want to change the display of OLED, you need to change here
-        // matrix_write_ln(matrix, read_layer_state());
+        /* matrix_write_ln(matrix, read_layer_state()); */
         // matrix_write_ln(matrix, read_keylog());
         // matrix_write_ln(matrix, read_keylogs());
-        // matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
+        /* matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui)); */
         // matrix_write_ln(matrix, read_host_led_state());
         // matrix_write_ln(matrix, read_timelog());
         matrix_write(matrix, read_state());
@@ -226,44 +202,34 @@ void iota_gfx_task_user(void) {
 }
 #endif//SSD1306OLED
 
-bool process_mp_key(uint16_t keycode, keyrecord_t *record, bool is_windows) {
-    uint16_t final_modifier_keycode = 0;
-    uint16_t final_keycode = 0;
+bool process_mp_key(uint16_t keycode, keyrecord_t *record) {
+    uint16_t kc = 0;
+    bool is_win = keymap_config.swap_lalt_lgui;
 
     switch (keycode) {
-        case MP_HOME:
-            final_modifier_keycode = is_windows ? 0 : KC_LGUI;
-            final_keycode = is_windows ? KC_HOME : KC_LEFT;
-            break;
-        case MP_END:
-            final_modifier_keycode = is_windows ? 0 : KC_LGUI;
-            final_keycode = is_windows ? KC_END : KC_RGHT;
-            break;
         case MP_PREV:
-            final_keycode = is_windows ? KC_MPRV : KC_MRWD;
+            kc = is_win ? KC_MPRV : KC_MRWD;
             break;
         case MP_NEXT:
-            final_keycode = is_windows ? KC_MNXT : KC_MFFD;
+            kc = is_win ? KC_MNXT : KC_MFFD;
             break;
         case MP_MUTE:
-            final_keycode = is_windows ? KC_MUTE : KC__MUTE;
+            kc = is_win ? KC_MUTE : KC__MUTE;
             break;
         case MP_VOLDOWN:
-            final_keycode = is_windows ? KC_VOLD : KC__VOLDOWN;
+            kc = is_win ? KC_VOLD : KC__VOLDOWN;
             break;
         case MP_VOLUP:
-            final_keycode = is_windows ? KC_VOLU : KC__VOLUP;
+            kc = is_win ? KC_VOLU : KC__VOLUP;
             break;
     }
 
-    if (!final_keycode) return false;
+    if (!kc) return false;
 
     if (record->event.pressed) {
-        if (final_modifier_keycode) register_code(final_modifier_keycode);
-        register_code(final_keycode);
+        register_code(kc);
     } else {
-        unregister_code(final_keycode);
-        if (final_modifier_keycode) unregister_code(final_modifier_keycode);
+        unregister_code(kc);
     }
 
     return false;
@@ -326,14 +292,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             #endif
             break;
-        case MP_HOME:
-        case MP_END:
         case MP_PREV:
         case MP_NEXT:
         case MP_MUTE:
         case MP_VOLDOWN:
         case MP_VOLUP:
-            return process_mp_key(keycode, record, keymap_config.swap_lalt_lgui);
+            return process_mp_key(keycode, record);
             break;
     }
     return true;

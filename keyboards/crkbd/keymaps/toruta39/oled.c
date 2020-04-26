@@ -6,8 +6,7 @@ extern keymap_config_t keymap_config;
 char state_str[24];
 char layers[6][8] = {
     "DEFAULT",
-    "DVORAK ",
-    "COLEMAK",
+    "GAME   ",
     "LOWER  ",
     "RAISE  ",
     "ADJUST "
