@@ -5,20 +5,19 @@ extern keymap_config_t keymap_config;
 
 char state_str[24];
 char layers[6][8] = {
-    "DEFAULT",
-    "GAME   ",
-    "LOWER  ",
-    "RAISE  ",
-    "ADJUST "
+    "0",
+    "1",
+    "2",
+    "3"
 };
 
 const char *read_state(void) {
     snprintf(
         state_str,
         sizeof(state_str),
-        "L:%s OS:%s",
+        "LAYER:%s OS:%s",
         layers[biton32(layer_state)],
-        keymap_config.swap_lalt_lgui == false ? "MAC" : "WIN");
+        keymap_config.swap_lalt_lgui == true ? "MAC" : "WIN");
 
     return state_str;
 }

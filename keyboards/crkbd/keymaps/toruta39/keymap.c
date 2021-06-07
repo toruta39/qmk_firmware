@@ -22,10 +22,9 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _DEFAULT 0
-#define _GAME 1
-#define _LOWER 2
-#define _RAISE 3
-#define _ADJUST 4
+#define _LOWER 1
+#define _RAISE 2
+#define _ADJUST 3
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
@@ -83,23 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 //`--------------------'  `--------------------'
     ),
 
-    [_GAME] = LAYOUT_kc( \
-    //,-----------------------------------------.                ,-----------------------------------------.
-        _____, _____, _____, _____, _____, _____,                  _____, _____,    UP, _____, _____, _____,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____, _____, _____, _____, _____, _____,                  _____,  LEFT,  DOWN, RIGHT, _____, _____,\
-    //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____, _____, _____, _____, _____, _____,                  _____, _____, _____, _____, _____, _____,\
-    //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                    _____, _____, _____,    _____, _____, _____ \
-                                //`--------------------'  `--------------------'
-    ),
-
     [_LOWER] = LAYOUT_kc( \
     //,-----------------------------------------.                ,-----------------------------------------.
-          ESC,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,  PSCR,\
+          ESC,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10, _____,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  DQUO,\
+        _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, _____,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         _____, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX,   F11,   F12, _____,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -125,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
          LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, MMMUT, MMVOD, MMVOU, XXXXX, XXXXX,\
     //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX,   MAC,   WIN,  GAME, XXXXX, XXXXX,\
+         LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX,   MAC,   WIN, XXXXX, XXXXX, XXXXX,\
     //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     _____, _____, _____,    _____, _____, _____ \
                                 //`--------------------'  `--------------------'
@@ -204,23 +191,23 @@ void iota_gfx_task_user(void) {
 
 bool process_mp_key(uint16_t keycode, keyrecord_t *record) {
     uint16_t kc = 0;
-    bool is_win = keymap_config.swap_lalt_lgui;
+    bool is_mac = keymap_config.swap_lalt_lgui;
 
     switch (keycode) {
         case MP_PREV:
-            kc = is_win ? KC_MPRV : KC_MRWD;
+            kc = is_mac ? KC_MRWD : KC_MPRV;
             break;
         case MP_NEXT:
-            kc = is_win ? KC_MNXT : KC_MFFD;
+            kc = is_mac ? KC_MFFD : KC_MNXT;
             break;
         case MP_MUTE:
-            kc = is_win ? KC_MUTE : KC__MUTE;
+            kc = is_mac ? KC__MUTE : KC_MUTE;
             break;
         case MP_VOLDOWN:
-            kc = is_win ? KC_VOLD : KC__VOLDOWN;
+            kc = is_mac ? KC__VOLDOWN : KC_VOLD;
             break;
         case MP_VOLUP:
-            kc = is_win ? KC_VOLU : KC__VOLUP;
+            kc = is_mac ? KC__VOLUP : KC_VOLU;
             break;
     }
 
